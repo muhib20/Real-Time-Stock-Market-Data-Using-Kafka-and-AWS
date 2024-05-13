@@ -1,0 +1,46 @@
+wget https://downloads.apache.org/kafka/3.7.0/kafka_2.13-3.7.0.tgz
+tar -xzf kafka_2.13-3.7.0.tgz
+----------------------------------------
+sudo yum update
+java -version
+sudo yum install java-1.8.0-openjdk
+No match for argument: java-1.8.0-openjdk
+Error: Unable to find a match: java-1.8.0-openjdk
+Amazon Corretto 8, which is a no-cost, multiplatform, production-ready distribution of the Open Java Development Kit (OpenJDK). It's offered by Amazon and based on OpenJDK
+sudo yum install -y https://d3pxv6yz143wms.cloudfront.net/8.302.08.1/amazon-corretto-8.302.08.1-linux-x64.rpm
+sudo yum install -y java-1.8.0-amazon-corretto-devel
+java -version
+----------------------------------------
+Start Zoo-keeper:
+cd kafka_2.13-3.7.0
+bin/zookeeper-server-start.sh config/zookeeper.properties
+----------------------------------------
+Open another window to start kafka
+----------------------------------------
+Allocating some amount of memory to kafka server
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+----------------------------------------
+Start Kafka-server:
+cd kafka_2.13-3.7.0
+bin/kafka-server-start.sh config/server.properties
+It is pointing to private server , so we can't acess from other network change server.properties file so that it can run in public IP stop the both services by ctr+c
+----------------------------------------
+To do this , you can follow any of the 2 approaches shared below --
+cd kafka_2.13-3.7.0
+Do a "sudo nano config/server.properties" - change ADVERTISED_LISTENERS to public ip of the EC2 instance
+#advertised.listeners=PLAINTEXT://your.host.name:9092 paste your public ip in hostname, uncomment it, and save it again check if the changes has been done or not
+start zookeeper and kafka
+----------------------------------------
+Duplicate the session & enter in a new console
+Create the topic:
+cd kafka_2.13-3.7.0
+bin/kafka-topics.sh --create --topic demo_testing2 --bootstrap-server (Put the Public IP of your EC2 Instance):9092 --replication-factor 1 --partitions 1
+----------------------------------------
+Start Producer:
+bin/kafka-console-producer.sh --topic demo_testing2 --bootstrap-server (Put the Public IP of your EC2 Instance):9092
+
+Duplicate the session & enter in a new console
+----------------------------------------
+Start Consumer:
+cd kafka_2.13-3.7.0
+bin/kafka-console-consumer.sh --topic demo_testing2 --bootstrap-server (Put the Public IP of your EC2 Instance):9092

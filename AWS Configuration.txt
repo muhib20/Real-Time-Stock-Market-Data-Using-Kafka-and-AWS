@@ -1,0 +1,30 @@
+Sign up for an AWS account
+----------------------------------------
+Navigate to EC2 dashboard.
+Select key pair or make new one and download it
+launch instance
+Select a key pair or create a new one and download it.
+Create instance
+Select instane and connect from ssh client copy the command provided and paste it in the command prompt. Make sure you're in the directory where the key file is present.
+In ec2 console go to security click on security groups add inbound rule allowing all traffic from anywhere (IPv4) to anywhere. Note: This is not a best practice for security but is acceptable for practice purposes.
+----------------------------------------
+go to S3 and create a bucket with a unique name.
+----------------------------------------
+Add a new user and attach the Administrator Access policy and download the CSV file containing access credentials. Ensure not to leak this file.
+go to aws cli in browser and install it
+Duplicate the session & enter in a new console
+Run aws configure
+from csv file paste the access key id and access secret key
+now you can send data to s3 from local machine
+----------------------------------------
+Set Up AWS Glue
+go to the aws glue
+Create a crawler with a unique name.
+add s3 bucket in data source s3://kafka-stock-market-muhib/
+Create an IAM role for Glue and attach the Administrator policy.
+Create a database.
+Create the crawler and run it.
+----------------------------------------
+Configure Athena
+go to Anthena add a datasource and database
+Enter the table and preview. If errors occur, go to settings and click "manage" to add the bucket or create a new one in the same region.

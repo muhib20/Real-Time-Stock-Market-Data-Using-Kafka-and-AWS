@@ -1,0 +1,10 @@
+Download and install Anaconda from the official website
+Note:- (You can execute all these commands directly in Anaconda Navigator as well, providing a user-friendly graphical interface for managing environments and packages.)
+Click Anaconda Prompt to open it. This will launch a terminal window specifically for Anaconda.
+Type conda info and press enter. This command provides information about your Conda installation, such as version, directories, and active environment.
+To create a new isolated environment, type conda create --name ENVNAME where "ENVNAME" is the name you want to give your new environment.
+After creating the environment, activate it using conda activate ENVNAME. This switches your current terminal session to use the packages and Python interpreter from the specified environment.
+you can install packages using conda install PACKAGENAME. install Jupyter Lab, type conda install jupyterlab.
+Once the required packages are installed, start Jupyter Lab by typing jupyter lab in the Anaconda Prompt.
+Shut down Jupyter Lab by enter CTR+C After you're done working.
+After you're done working in the environment, deactivate it using conda deactivate. This returns you to the base environment or whichever environment you were in before activation.
